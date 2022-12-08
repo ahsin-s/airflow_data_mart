@@ -30,6 +30,7 @@ with DAG(
         dag_id="redshift-replication-pipeline",
         schedule_interval="@daily",
         start_date=pendulum.parse('2015-01-01'),  # the dag schedules run for every schedule interval after this date
+        catchup=True,
 ) as replication_dag:
     query_params = {
         'selection_date': '{{ ds }}',
